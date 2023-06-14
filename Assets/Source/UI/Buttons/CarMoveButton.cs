@@ -1,14 +1,26 @@
+using UnityEngine;
+using UnityEngine.EventSystems;
+
 namespace Source.UI.Buttons
 {
-    public sealed class CarMoveButton : GameButton
+    public sealed class CarMoveButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
-        protected override void OnClick()
+        private bool _isClicked;
+
+        private void Update()
         {
-            Move();
+            if (_isClicked)
+                print("AAA");
         }
 
-        private void Move()
+        public void OnPointerDown(PointerEventData eventData)
         {
+            _isClicked = true;
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            _isClicked = false;
         }
     }
 }
